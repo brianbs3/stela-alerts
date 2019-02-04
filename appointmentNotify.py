@@ -44,15 +44,17 @@ def processAppointments(appt):
     formattedDate = ""
     for a in appt:
         fd = datetime.datetime.strptime(str(a['ts']), '%Y-%m-%d %H:%M:%S')
-        formattedDate = fd.strftime('%m/%d/%Y')
+        formattedDate = fd.strftime('%d-%b-%Y')
         formattedTime = fd.strftime('%I:%M %p')
         message = "This is a friendly reminder from Inspirations Salon that you have an appointment on " + formattedDate + " at " + formattedTime + " with " + a['stylistFirstName'] + " " + a['stylistLastName'] + "."
         toPhone = "+1" + str(a['areaCode']) + str(a['phonePrefix'] + str(a['phoneLineNumber']))
         print message + " - " + toPhone
-        client.publish(
+        msgSend = client.publish(
             PhoneNumber = toPhone,
             Message = message
         )
+
+        print msgSend
 
 if __name__ == '__main__':
     # try:
