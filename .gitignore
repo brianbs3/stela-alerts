@@ -1,4 +1,6 @@
 bin/
 include/
 lib/
-.Python/
+.Python
+.idea/
+setup.sh
