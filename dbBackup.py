@@ -25,7 +25,7 @@ s3 = boto3.resource('s3')
 # filename = '/Users/bs/stela.sql.gz'
 bucket = 'stela-backups'
 #
-s3.Object(bucket, dataFileNameKey).put(Body=open(finalName, 'rb'))
+s3.Object(bucket, dataFileNameKey + ".sql.gz").put(Body=open(finalName, 'rb'))
 
 os.system("rm " + finalName)
 
